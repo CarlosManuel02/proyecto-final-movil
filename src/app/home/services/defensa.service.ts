@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Servicios} from "../../interfaces";
+import {Servicios, Videos} from "../../interfaces";
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +16,19 @@ export class DefensaService {
 
   getServicios(): Promise<Servicios> {
     const path = this.url + 'servicios.php';
-
     return new Promise((resolve, reject) => {
       this.http.get<Servicios>(path).subscribe((data) => {
+        resolve(data);
+      }, (error) => {
+        reject(error);
+      });
+    });
+  }
+
+  getVideos(): Promise<Videos> {
+    const path = this.url + 'videos.php';
+    return new Promise((resolve, reject) => {
+      this.http.get<Videos>(path).subscribe((data) => {
         resolve(data);
       }, (error) => {
         reject(error);

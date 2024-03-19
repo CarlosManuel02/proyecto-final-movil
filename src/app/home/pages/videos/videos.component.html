@@ -10,5 +10,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
+  <ion-card *ngFor="let video of videos?.datos">
+    <ion-card-header>
+      <ion-card-subtitle>{{video.fecha}}</ion-card-subtitle>
+      <ion-card-title>{{video.titulo}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p *ngIf="video.descripcion">{{video.descripcion}}</p>
+      <ion-button expand="block" color="primary" [href]="'https://www.youtube.com/watch?v=' + video.link" target="_blank">Ver video</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

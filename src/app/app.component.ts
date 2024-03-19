@@ -8,17 +8,16 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   appPages: { title: string; url: string; icon: string }[] = [
-    { title: 'Inicio', url: '/home', icon: 'home' },
+    { title: 'Inicio', url: '', icon: 'home' },
     { title: 'Historia', url: '/historia', icon: 'book' },
-    { title: 'Servicios', url: '/services', icon: 'construct' },
-    { title: 'Noticias', url: '/news', icon: 'newspaper' },
+    { title: 'Servicios', url: '/servicios', icon: 'construct' },
+    { title: 'Noticias', url: '/noticias', icon: 'newspaper' },
     { title: 'Videos', url: '/videos', icon: 'videocam' },
-    { title: 'Albergues', url: '/shelters', icon: 'home' },
-    { title: 'Mapa de Albergues', url: '/shelters-map', icon: 'map' },
-    { title: 'Medidas Preventivas', url: '/prevention', icon: 'warning' },
-    { title: 'Miembros', url: '/members', icon: 'people' },
-    { title: 'Quiero ser Voluntario', url: '/volunteer', icon: 'hand-left' },
-    { title: 'Acerca de', url: '/about', icon: 'information-circle' },
+    { title: 'Albergues', url: '/albergues', icon: 'home' },
+    { title: 'Medidas Preventivas', url: '/medidas', icon: 'warning' },
+    { title: 'Miembros', url: '/miembros', icon: 'people' },
+    { title: 'Quiero ser Voluntario', url: '/voluntariado', icon: 'hand-left' },
+    { title: 'Acerca de', url: '/acerca-de', icon: 'information-circle' },
   ];
   constructor() {}
 }

@@ -6,6 +6,14 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import {HistoriaComponent} from "./pages/historia/historia.component";
+import {ServiciosComponent} from "./pages/servicios/servicios.component";
+import {AcercaDeComponent} from "./pages/acerca-de/acerca-de.component";
+import {AlberguesComponent} from "./pages/albergues/albergues.component";
+import {MiembrosComponent} from "./pages/miembros/miembros.component";
+import {NoticiasComponent} from "./pages/noticias/noticias.component";
+import {VideosComponent} from "./pages/videos/videos.component";
+import {VoluntarioComponent} from "./pages/voluntario/voluntario.component";
+import {MedidasComponent} from "./pages/medidas/medidas.component";
 
 
 @NgModule({
@@ -17,7 +25,16 @@ import {HistoriaComponent} from "./pages/historia/historia.component";
   ],
   declarations: [
     HomePage,
-    HistoriaComponent
+    HistoriaComponent,
+    ServiciosComponent,
+    AcercaDeComponent,
+    AlberguesComponent,
+    MiembrosComponent,
+    NoticiasComponent,
+    ServiciosComponent,
+    VideosComponent,
+    VoluntarioComponent,
+    MedidasComponent
   ]
 })
 export class HomePageModule {}

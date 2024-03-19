@@ -6,9 +6,33 @@
     <ion-title>
       Servicios
     </ion-title>
+    <ion-progress-bar type="indeterminate"
+                      *ngIf="loading"
+    ></ion-progress-bar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="false" *ngIf="!loading">
 
+    <h1
+      style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+      Servicios disponibles
+    </h1>
+
+
+
+  <ion-card *ngFor="let servicio of servicios?.datos">
+    <img [src]="servicio.foto" alt="{{servicio.nombre}}">
+    <ion-card-header>
+      <ion-card-title>{{servicio.nombre}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{servicio.descripcion}}</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
+
+
+
+

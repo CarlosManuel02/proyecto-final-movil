@@ -15,6 +15,7 @@ export class AppComponent {
     { title: 'Videos', url: '/videos', icon: 'videocam' },
     { title: 'Albergues', url: '/albergues', icon: 'home' },
     { title: 'Medidas Preventivas', url: '/medidas', icon: 'warning' },
+    { title: 'Situaciones', url: '/situaciones', icon: 'gift' },
     { title: 'Miembros', url: '/miembros', icon: 'people' },
     { title: 'Quiero ser Voluntario', url: '/voluntariado', icon: 'hand-left' },
     { title: 'Acerca de', url: '/acerca-de', icon: 'information-circle' },

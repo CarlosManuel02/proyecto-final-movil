@@ -10,6 +10,8 @@ import {MedidasComponent} from "./pages/medidas/medidas.component";
 import {MiembrosComponent} from "./pages/miembros/miembros.component";
 import {VoluntarioComponent} from "./pages/voluntario/voluntario.component";
 import {AcercaDeComponent} from "./pages/acerca-de/acerca-de.component";
+import {SituacionesComponent} from "./pages/situaciones/situaciones.component";
+import {ValidarTokenGuard} from "../guards/validar-token.guard";
 
 const routes: Routes = [
   {
@@ -47,6 +49,12 @@ const routes: Routes = [
   {
     path: 'voluntariado',
     component: VoluntarioComponent
+  },
+  {
+    path: 'situaciones',
+    component: SituacionesComponent,
+    canActivate: [ValidarTokenGuard],
+    canLoad: [ValidarTokenGuard]
   },
   {
     path: 'acerca-de',

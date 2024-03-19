@@ -14,6 +14,8 @@ import {NoticiasComponent} from "./pages/noticias/noticias.component";
 import {VideosComponent} from "./pages/videos/videos.component";
 import {VoluntarioComponent} from "./pages/voluntario/voluntario.component";
 import {MedidasComponent} from "./pages/medidas/medidas.component";
+import {SituacionesComponent} from "./pages/situaciones/situaciones.component";
+import {ReportarSituacionComponent} from "./pages/reportar-situacion/reportar-situacion.component";
 
 
 @NgModule({
@@ -34,7 +36,10 @@ import {MedidasComponent} from "./pages/medidas/medidas.component";
     ServiciosComponent,
     VideosComponent,
     VoluntarioComponent,
-    MedidasComponent
+    MedidasComponent,
+    SituacionesComponent,
+    ReportarSituacionComponent,
+
   ]
 })
 export class HomePageModule {}

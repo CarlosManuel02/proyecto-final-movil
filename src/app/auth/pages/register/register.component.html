@@ -1,0 +1,76 @@
+<ion-content class="ion-padding">
+<!--             style="text-align: center;">-->
+
+  <h1 style="text-align: center; margin-bottom: 30px">
+    Registro
+  </h1>
+
+  <form [formGroup]="registerform" (ngSubmit)="register()">
+    <ion-item>
+      <ion-input
+        label="Nombre"
+        formControlName="nombre"
+        type="text"
+        required
+      ></ion-input>
+
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        label="Apellido"
+        formControlName="apellido"
+        type="text"
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        label="Correo"
+        formControlName="correo"
+        type="email"
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        label="Telefono"
+        formControlName="telefono"
+        type="text"
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        label="Cedula"
+        formControlName="cedula"
+        type="text"
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        label="Clave"
+        formControlName="clave"
+        type="password"
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" expand="block" [disabled]="!registerform.valid">
+      Registrarse
+    </ion-button>
+  </form>
+
+  <p>
+    ¿Ya tienes una cuenta? <a routerLink="../login">Inicia sesión</a>
+  </p>
+
+
+</ion-content>
+
+

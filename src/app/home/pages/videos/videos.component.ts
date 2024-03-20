@@ -10,19 +10,22 @@ import {Videos} from "../../../interfaces";
 export class VideosComponent implements OnInit {
 
   videos!: Videos;
-
+  loading = false
   constructor(
     public defensaService: DefensaService,
   ) {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.defensaService.getVideos()
       .then((data) => {
         if (data.exito) {
+          this.loading = false;
           this.videos = data;
         } else {
           console.error(data.mensaje);
+          this.loading = false;
         }
       })
   }

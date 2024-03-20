@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Servicios, Videos, Noticias, Albergues} from "../../interfaces";
+import {Servicios, Videos, Noticias, Albergues, Medidas} from "../../interfaces";
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +56,17 @@ export class DefensaService {
         reject(error);
       });
     });
+  }
+
+  getMedidas() : Promise<Medidas> {
+    const path = this.url + 'medidas_preventivas.php';
+    return new Promise((resolve, reject) => {
+      this.http.get<Medidas>(path).subscribe((data) => {
+        resolve(data);
+      }, (error) => {
+        reject(error);
+      });
+    });
+
   }
 }

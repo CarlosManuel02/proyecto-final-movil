@@ -6,9 +6,44 @@
     <ion-title>
       Medidas Preventivas
     </ion-title>
+    <ion-progress-bar type="indeterminate" *ngIf="loading"></ion-progress-bar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
+  <ion-list *ngIf="medidas && medidas.datos.length">
+    <ion-item *ngFor="let medida of medidas.datos"
+              (click)="openModal(medida)">
+      <ion-thumbnail slot="start">
+        <img [src]="medida.foto" alt="Foto">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ medida.titulo }}</h2>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-spinner *ngIf="loading"></ion-spinner>
+  <ion-text *ngIf="!loading && !medidas.datos.length">No se encontraron medidas preventivas.</ion-text>
 </ion-content>
+
+
+<ion-modal [showBackdrop]="true" [animated]="true">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="closeModal()">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>{{ medida?.titulo }}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+<!--      <ion-thumbnail>-->
+        <img [src]="medida?.foto" alt="Foto" height="500px" width="100%">
+<!--      </ion-thumbnail>-->
+      <p class="description">{{ medida?.descripcion }}</p>
+    </ion-content>
+  </ng-template>
+</ion-modal>

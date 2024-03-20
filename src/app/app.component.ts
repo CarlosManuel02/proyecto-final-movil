@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -20,5 +21,11 @@ export class AppComponent {
     { title: 'Quiero ser Voluntario', url: '/voluntariado', icon: 'hand-left' },
     { title: 'Acerca de', url: '/acerca-de', icon: 'information-circle' },
   ];
-  constructor() {}
+  constructor(
+    public router: Router,
+  ) {}
+
+  login() {
+    this.router.navigate(['../auth']);
+  }
 }

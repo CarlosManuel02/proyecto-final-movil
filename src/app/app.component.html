@@ -3,7 +3,10 @@
     <ion-content>
       <ion-list id="inbox-list">
         <ion-list-header>Inbox</ion-list-header>
-        <ion-note>hi&#64;ionicframework.com</ion-note>
+        <ion-item>
+          <ion-label>No estas logueado</ion-label>
+          <ion-button fill="outline" slot="end" (click)="login()">Login</ion-button>
+        </ion-item>
 
         <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
           <ion-item routerDirection="root" [routerLink]="['/home'+ p.url]" lines="none" detail="false"

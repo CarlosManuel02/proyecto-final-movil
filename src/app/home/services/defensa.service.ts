@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Servicios, Videos, Noticias} from "../../interfaces";
+import {Servicios, Videos, Noticias, Albergues} from "../../interfaces";
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +40,17 @@ export class DefensaService {
     const path = this.url + 'noticias.php';
     return new Promise((resolve, reject) => {
       this.http.get<Noticias>(path).subscribe((data) => {
+        resolve(data);
+      }, (error) => {
+        reject(error);
+      });
+    });
+  }
+
+  getAlbergues(): Promise<Albergues> {
+    const path = this.url + 'albergues.php';
+    return new Promise((resolve, reject) => {
+      this.http.get<Albergues>(path).subscribe((data) => {
         resolve(data);
       }, (error) => {
         reject(error);

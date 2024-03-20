@@ -16,6 +16,7 @@ import {VoluntarioComponent} from "./pages/voluntario/voluntario.component";
 import {MedidasComponent} from "./pages/medidas/medidas.component";
 import {SituacionesComponent} from "./pages/situaciones/situaciones.component";
 import {ReportarSituacionComponent} from "./pages/reportar-situacion/reportar-situacion.component";
+import {GoogleMap, MapAdvancedMarker, MapMarker} from "@angular/google-maps";
 
 
 @NgModule({
@@ -23,7 +24,10 @@ import {ReportarSituacionComponent} from "./pages/reportar-situacion/reportar-si
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    GoogleMap,
+    MapMarker,
+    MapAdvancedMarker
   ],
   declarations: [
     HomePage,

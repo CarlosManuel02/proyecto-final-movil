@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Servicios, Videos, Noticias, Albergues, Medidas} from "../../interfaces";
+import {Servicios, Videos, Noticias, Albergues, Medidas, Miembros} from "../../interfaces";
 
 @Injectable({
   providedIn: 'root'
@@ -58,7 +58,7 @@ export class DefensaService {
     });
   }
 
-  getMedidas() : Promise<Medidas> {
+  getMedidas(): Promise<Medidas> {
     const path = this.url + 'medidas_preventivas.php';
     return new Promise((resolve, reject) => {
       this.http.get<Medidas>(path).subscribe((data) => {
@@ -67,6 +67,16 @@ export class DefensaService {
         reject(error);
       });
     });
+  }
 
+  getMiembros(): Promise<Miembros> {
+    const path = this.url + 'miembros.php';
+    return new Promise((resolve, reject) => {
+      this.http.get<Miembros>(path).subscribe((data) => {
+        resolve(data);
+      }, (error) => {
+        reject(error);
+      });
+    });
   }
 }

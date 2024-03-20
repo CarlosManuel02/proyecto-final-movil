@@ -6,9 +6,23 @@
     <ion-title>
       Miembros
     </ion-title>
+    <ion-progress-bar type="indeterminate" *ngIf="loading"></ion-progress-bar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+  <ion-list *ngIf="miembros?.datos">
+    <ion-item *ngFor="let miembro of miembros?.datos">
+      <ion-avatar slot="start">
+        <img [src]="miembro.foto">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ miembro.nombre }}</h2>
+        <p>{{ miembro.cargo }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
 
 </ion-content>

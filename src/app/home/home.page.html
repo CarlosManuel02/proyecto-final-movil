@@ -13,7 +13,7 @@
   <!-- Slider -->
   <div class="slider-container">
     <div class="slide" *ngFor="let slide of slides">
-      <img [src]="slide.image" alt="Slide Image">
+      <img [src]="'assets/images' +  slide.image" alt="Slide Image" style="height: 400px">
       <h2>{{ slide.title }}</h2>
       <p>{{ slide.description }}</p>
     </div>
@@ -21,12 +21,12 @@
 
   <!-- Otros elementos -->
   <div class="other-elements">
+    <!-- Llamado a la acción -->
     <ion-card>
-      <ion-card-header>
-        <ion-card-title>Últimas noticias</ion-card-title>
-      </ion-card-header>
       <ion-card-content>
-        <p>Contenido de las últimas noticias...</p>
+        <h2>Llamado a la acción</h2>
+        <p>{{ actionCall.text }}</p>
+        <a [href]="actionCall.link">¡Únete a la Defensa Civil!</a>
       </ion-card-content>
     </ion-card>
 

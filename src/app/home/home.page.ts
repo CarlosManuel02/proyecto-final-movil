@@ -9,22 +9,37 @@ export class HomePage {
 
   slides = [
     {
-      image: 'assets/slide1.jpg',
-      title: 'Acción 1',
-      description: 'Descripción de la acción 1 de la Defensa Civil.'
+      image: '/slide1.png',
+      title: 'Respuesta a emergencias',
+      description: 'La Defensa Civil actúa con rapidez y eficacia para proteger a las personas durante desastres naturales y otras emergencias.'
     },
     {
-      image: 'assets/slide2.jpg',
-      title: 'Acción 2',
-      description: 'Descripción de la acción 2 de la Defensa Civil.'
+      image: '/slide2.png',
+      title: 'Búsqueda y rescate',
+      description: 'La Defensa Civil cuenta con personal altamente capacitado para encontrar y rescatar a personas en situaciones de peligro.'
     },
     {
-      image: 'assets/slide3.jpg',
-      title: 'Acción 3',
-      description: 'Descripción de la acción 3 de la Defensa Civil.'
+      image: '/slide3.png',
+      title: 'Capacitación y educación',
+      description: 'La Defensa Civil ofrece programas de capacitación para preparar a la población ante situaciones de emergencia.'
+    },
+    {
+      image: '/slide4.png',
+      title: 'Prevención y mitigación',
+      description: 'La Defensa Civil trabaja para reducir el riesgo de desastres mediante la implementación de medidas de prevención y mitigación.'
+    },
+    {
+      image: '/slide5.png',
+      title: 'Voluntariado',
+      description: 'La Defensa Civil cuenta con una amplia red de voluntarios que apoyan en las labores de emergencia y prevención.'
     }
   ];
 
-  constructor() {}
+  actionCall = {
+    text: '¡Únete a la Defensa Civil!',
+    link: 'https://defensacivil.gob.do/index.php/contacto/itemlist/category/1-sobre-nosotros'
+  };
+
+  constructor() { }
 
 }

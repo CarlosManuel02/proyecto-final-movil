@@ -8,7 +8,6 @@ import {VideosComponent} from "./pages/videos/videos.component";
 import {AlberguesComponent} from "./pages/albergues/albergues.component";
 import {MedidasComponent} from "./pages/medidas/medidas.component";
 import {MiembrosComponent} from "./pages/miembros/miembros.component";
-import {VoluntarioComponent} from "./pages/voluntario/voluntario.component";
 import {AcercaDeComponent} from "./pages/acerca-de/acerca-de.component";
 import {SituacionesComponent} from "./pages/situaciones/situaciones.component";
 import {ValidarTokenGuard} from "../guards/validar-token.guard";
@@ -45,10 +44,6 @@ const routes: Routes = [
   {
     path: 'miembros',
     component: MiembrosComponent
-  },
-  {
-    path: 'voluntariado',
-    component: VoluntarioComponent
   },
   {
     path: 'situaciones',

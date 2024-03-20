@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {AuthService} from "./auth/services/auth.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   appPages: { title: string; url: string; icon: string }[] = [
     { title: 'Inicio', url: '', icon: 'home' },
@@ -18,14 +19,20 @@ export class AppComponent {
     { title: 'Medidas Preventivas', url: '/medidas', icon: 'warning' },
     { title: 'Situaciones', url: '/situaciones', icon: 'gift' },
     { title: 'Miembros', url: '/miembros', icon: 'people' },
-    { title: 'Quiero ser Voluntario', url: '/voluntariado', icon: 'hand-left' },
     { title: 'Acerca de', url: '/acerca-de', icon: 'information-circle' },
   ];
+  isLogged: boolean = false;
   constructor(
     public router: Router,
+    public authService: AuthService
   ) {}
+
 
   login() {
     this.router.navigate(['../auth']);
+  }
+
+  ngOnInit(): void {
+    this.isLogged = this.authService.isLogged();
   }
 }

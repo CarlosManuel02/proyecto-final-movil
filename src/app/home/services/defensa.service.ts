@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Servicios, Videos, Noticias, Albergues, Medidas, Miembros} from "../../interfaces";
+import {Servicios, Videos, Noticias, Albergues, Medidas, Miembros, Situaciones} from "../../interfaces";
+import {AuthService} from "../../auth/services/auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class DefensaService {
   private url = 'https://adamix.net/defensa_civil/def/';
 
   constructor(
-    public http: HttpClient
+    public http: HttpClient,
+    public auth: AuthService
   ) {
   }
 
@@ -78,5 +80,19 @@ export class DefensaService {
         reject(error);
       });
     });
+  }
+
+  getSituaciones() : Promise<Situaciones> {
+    const path = this.url + 'situaciones.php';
+    const body: FormData = new FormData();
+    body.append('token', this.auth.token);
+    return new Promise((resolve, reject) => {
+      this.http.post<Situaciones>(path, body).subscribe((data) => {
+        resolve(data);
+      }, (error) => {
+        reject(error);
+      });
+    });
+
   }
 }

@@ -12,11 +12,11 @@ import {AlberguesComponent} from "./pages/albergues/albergues.component";
 import {MiembrosComponent} from "./pages/miembros/miembros.component";
 import {NoticiasComponent} from "./pages/noticias/noticias.component";
 import {VideosComponent} from "./pages/videos/videos.component";
-import {VoluntarioComponent} from "./pages/voluntario/voluntario.component";
 import {MedidasComponent} from "./pages/medidas/medidas.component";
 import {SituacionesComponent} from "./pages/situaciones/situaciones.component";
 import {ReportarSituacionComponent} from "./pages/reportar-situacion/reportar-situacion.component";
 import {GoogleMap, MapAdvancedMarker, MapMarker} from "@angular/google-maps";
+import {SlickCarouselModule} from "ngx-slick-carousel";
 
 
 @NgModule({
@@ -27,7 +27,8 @@ import {GoogleMap, MapAdvancedMarker, MapMarker} from "@angular/google-maps";
     HomePageRoutingModule,
     GoogleMap,
     MapMarker,
-    MapAdvancedMarker
+    MapAdvancedMarker,
+    SlickCarouselModule
   ],
   declarations: [
     HomePage,
@@ -39,7 +40,6 @@ import {GoogleMap, MapAdvancedMarker, MapMarker} from "@angular/google-maps";
     NoticiasComponent,
     ServiciosComponent,
     VideosComponent,
-    VoluntarioComponent,
     MedidasComponent,
     SituacionesComponent,
     ReportarSituacionComponent,

@@ -3,9 +3,9 @@
     <ion-content>
       <ion-list id="inbox-list">
         <ion-list-header>Inbox</ion-list-header>
-        <ion-item>
+        <ion-item *ngIf="!isLogged">
           <ion-label>No estas logueado</ion-label>
-          <ion-button fill="outline" slot="end" (click)="login()">Login</ion-button>
+          <ion-button fill="outline" slot="end" (click)="login()">Login/Registro</ion-button>
         </ion-item>
 
         <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">

@@ -1,9 +1,9 @@
 <ion-content>
-<!--  id: string;-->
-<!--  nombre: string;-->
-<!--  apellido: string;-->
-<!--  correo: string;-->
-<!--  telefono: string;-->
+  <!--  id: string;-->
+  <!--  nombre: string;-->
+  <!--  apellido: string;-->
+  <!--  correo: string;-->
+  <!--  telefono: string;-->
   <ion-card>
     <ion-card-header>
       <ion-card-title>
@@ -12,26 +12,46 @@
     </ion-card-header>
     <ion-card-content>
       <ion-item>
-        <ion-label position="floating">Nombre</ion-label>
-        <ion-input type="text" [(ngModel)]="usuario.nombre"></ion-input>
+        <ion-input type="text"
+                   label="Nombre"
+                   readonly
+                   [(ngModel)]="usuario.nombre"
+        ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Apellido</ion-label>
-        <ion-input type="text" [(ngModel)]="usuario.apellido"></ion-input>
+        <ion-input type="text"
+                   label="Apellido"
+                   readonly
+                   [(ngModel)]="usuario.apellido"
+        ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Correo</ion-label>
-        <ion-input type="text" [(ngModel)]="usuario.correo"></ion-input>
+        <ion-input type="text"
+                   label="Correo"
+                   readonly
+                   [(ngModel)]="usuario.correo"
+        ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Telefono</ion-label>
-        <ion-input type="text" [(ngModel)]="usuario.telefono"></ion-input>
+        <ion-input type="text"
+                   label="Teléfono"
+                   readonly
+                   [(ngModel)]="usuario.telefono"
+        ></ion-input>
       </ion-item>
 
-      <ion-button (click)="logout()">Cerrar sesión</ion-button>
+      <ion-button slot="start"
+                  expand="block"
+                  color="primary"
+                  (click)="resetPassword()">Editar perfil
+      </ion-button>
+      <ion-button slot="end"
+                  expand="block"
+                  id="open-action-sheet"
+                  color="danger">Cerrar sesión
+      </ion-button>
 
     </ion-card-content>
   </ion-card>
-
 
 </ion-content>

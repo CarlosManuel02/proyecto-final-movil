@@ -6,17 +6,17 @@ import {AuthService, Login} from "../../services/auth.service";
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.scss'],
 })
-export class PerfilComponent  implements AfterViewInit {
+export class PerfilComponent  implements OnInit {
 
-  get usuario() {
-    return this.authService.user;
+  get usuario(): any {
+    return JSON.parse(localStorage.getItem('user') || '{}');
   }
 
   constructor(
     public authService: AuthService,
   ) { }
 
-  ngAfterViewInit() {
+  ngOnInit(): void {
     console.log(this.usuario)
   }
 
@@ -24,4 +24,7 @@ export class PerfilComponent  implements AfterViewInit {
     this.authService.logout();
   }
 
+  resetPassword() {
+
+  }
 }

@@ -137,9 +137,7 @@ export class AuthService {
   }
 
 
-  isLogged()
-    :
-    boolean {
-    return localStorage.getItem('user') !== null;
+  isLogged(): boolean {
+    return JSON.parse(localStorage.getItem('user') || '{}').token !== '';
   }
 }

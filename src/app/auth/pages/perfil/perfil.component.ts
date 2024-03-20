@@ -7,7 +7,22 @@ import {AuthService, Login} from "../../services/auth.service";
   styleUrls: ['./perfil.component.scss'],
 })
 export class PerfilComponent  implements OnInit {
-
+  public alertButtons = [
+    {
+      text: 'Cancel',
+      role: 'cancel',
+      handler: () => {
+        return''
+      },
+    },
+    {
+      text: 'Logout',
+      role: 'logout',
+      handler: () => {
+        this.logout();
+      },
+    },
+  ];
   get usuario(): any {
     return JSON.parse(localStorage.getItem('user') || '{}');
   }

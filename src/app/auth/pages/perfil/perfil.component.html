@@ -47,7 +47,7 @@
       </ion-button>
       <ion-button slot="end"
                   expand="block"
-                  id="open-action-sheet"
+                  id="present-alert"
                   color="danger">Cerrar sesión
       </ion-button>
 
@@ -55,3 +55,10 @@
   </ion-card>
 
 </ion-content>
+
+<ion-alert
+  trigger="present-alert"
+  header="Alert"
+  message="¿Estás seguro que deseas cerrar sesión?"
+  [buttons]="alertButtons"
+></ion-alert>

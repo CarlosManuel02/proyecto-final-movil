@@ -2,10 +2,16 @@
   <ion-menu contentId="main-content" type="overlay" class="ion-padding">
     <ion-content>
       <ion-list id="inbox-list">
-        <ion-list-header>Inbox</ion-list-header>
+        <ion-list-header>
+          <ion-label>Menu</ion-label>
+        </ion-list-header>
         <ion-item *ngIf="!isLogged">
           <ion-label>No estas logueado</ion-label>
           <ion-button fill="outline" slot="end" (click)="login()">Login/Registro</ion-button>
+        </ion-item>
+
+        <ion-item *ngIf="isLogged">
+          <ion-button fill="outline" slot="start" (click)="goToProfile()">Mi perfil</ion-button>
         </ion-item>
 
         <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">

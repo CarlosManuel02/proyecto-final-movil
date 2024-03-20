@@ -7,25 +7,31 @@ import {AuthService} from "./auth/services/auth.service";
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
   appPages: { title: string; url: string; icon: string }[] = [
-    { title: 'Inicio', url: '', icon: 'home' },
-    { title: 'Historia', url: '/historia', icon: 'book' },
-    { title: 'Servicios', url: '/servicios', icon: 'construct' },
-    { title: 'Noticias', url: '/noticias', icon: 'newspaper' },
-    { title: 'Videos', url: '/videos', icon: 'videocam' },
-    { title: 'Albergues', url: '/albergues', icon: 'home' },
-    { title: 'Medidas Preventivas', url: '/medidas', icon: 'warning' },
-    { title: 'Situaciones', url: '/situaciones', icon: 'gift' },
-    { title: 'Miembros', url: '/miembros', icon: 'people' },
-    { title: 'Acerca de', url: '/acerca-de', icon: 'information-circle' },
+    {title: 'Inicio', url: '', icon: 'home'},
+    {title: 'Historia', url: '/historia', icon: 'book'},
+    {title: 'Servicios', url: '/servicios', icon: 'construct'},
+    {title: 'Noticias', url: '/noticias', icon: 'newspaper'},
+    {title: 'Videos', url: '/videos', icon: 'videocam'},
+    {title: 'Albergues', url: '/albergues', icon: 'home'},
+    {title: 'Medidas Preventivas', url: '/medidas', icon: 'warning'},
+    {title: 'Situaciones', url: '/situaciones', icon: 'gift'},
+    {title: 'Miembros', url: '/miembros', icon: 'people'},
+    {title: 'Acerca de', url: '/acerca-de', icon: 'information-circle'},
   ];
   isLogged: boolean = false;
+
   constructor(
     public router: Router,
     public authService: AuthService
-  ) {}
+  ) {
+  }
+
+  ngAfterViewInit(): void {
+    this.isLogged = this.authService.isLogged();
+  }
 
 
   login() {
@@ -34,5 +40,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLogged = this.authService.isLogged();
+  }
+
+  goToProfile() {
+    this.router.navigate(['../auth/perfil']);
   }
 }

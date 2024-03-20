@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map, Observable, tap} from "rxjs";
+import {Router} from "@angular/router";
 
 export interface Login {
   exito: boolean;
@@ -18,20 +19,46 @@ export interface Datos {
 }
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  user!: Login;
+  private _user!: Login;
+  get user(): Datos {
+    return {...this._user?.datos};
+  }
+
   private url = 'https://adamix.net/defensa_civil/def/';
 
-  get token(): string {
-    return JSON.parse(localStorage.getItem('token') || '{}');
+  get token() {
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user).token : '';
   }
+
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {
+    const user = localStorage.getItem('user');
+    if (user) {
+      this._user = JSON.parse(user);
+      console.log(this._user)
+    } else {
+      this._user = {
+        exito: false,
+        datos: {
+          id: '',
+          nombre: '',
+          apellido: '',
+          correo: '',
+          telefono: '',
+          token: ''
+        },
+        mensaje: ''
+      }
+    }
   }
 
   login(cedula: string, password: string) {
@@ -44,11 +71,10 @@ export class AuthService {
       .pipe(
         map((resp: Login) => {
             if (resp.exito) {
-              this.user = resp;
-              localStorage.setItem('token', JSON.stringify(resp.datos.token));
+              this.setUserData(resp);
               return resp.exito;
             } else {
-              localStorage.removeItem('token');
+              localStorage.removeItem('user');
               throw new Error(resp.mensaje);
             }
           }
@@ -60,7 +86,20 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this._user = {
+      exito: false,
+      datos: {
+        id: '',
+        nombre: '',
+        apellido: '',
+        correo: '',
+        telefono: '',
+        token: ''
+      },
+      mensaje: ''
+    }
+    this.router.navigate(['../auth']);
   }
 
   register(nombre: string, apellido: string, cedula: string, correo: string, telefono: string, clave: string) {
@@ -77,11 +116,11 @@ export class AuthService {
       .pipe(
         map((resp: Login) => {
             if (resp.exito) {
-              this.user = resp;
-              localStorage.setItem('token', JSON.stringify(resp.datos.token));
+              this._user = resp;
+              localStorage.setItem('user', JSON.stringify(resp.datos));
               return resp.exito;
             } else {
-              localStorage.removeItem('token');
+              localStorage.removeItem('user');
               throw new Error(resp.mensaje);
             }
           }
@@ -92,7 +131,15 @@ export class AuthService {
       );
   }
 
-  isLogged(): boolean {
-    return localStorage.getItem('token') !== null;
+  setUserData(resp: Login) {
+    localStorage.setItem('user', JSON.stringify(resp.datos));
+    this._user = resp;
+  }
+
+
+  isLogged()
+    :
+    boolean {
+    return localStorage.getItem('user') !== null;
   }
 }

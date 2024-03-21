@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   loginform = this.fb.group({
     cedula: ['', [Validators.required, Validators.minLength(10)]],
-    clave: ['', [Validators.required, Validators.minLength(6)]]
+    clave: ['', [Validators.required, Validators.minLength(4)]]
   });
 
   constructor(

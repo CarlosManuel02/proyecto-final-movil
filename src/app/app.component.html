@@ -3,14 +3,9 @@
     <ion-content>
       <ion-list id="inbox-list">
         <ion-list-header>
-          <ion-label>Menu</ion-label>
+          <img src="https://defensacivil.gob.do/images/plantilla/logo_defensa_civil_ultimate.png" alt="">
         </ion-list-header>
-        <ion-item *ngIf="!isLogged">
-          <ion-label>No estas logueado</ion-label>
-          <ion-button fill="outline" slot="end" (click)="login()">Login/Registro</ion-button>
-        </ion-item>
-
-        <ion-item *ngIf="isLogged">
+        <ion-item>
           <ion-button fill="outline" slot="start" (click)="goToProfile()">Mi perfil</ion-button>
         </ion-item>
 

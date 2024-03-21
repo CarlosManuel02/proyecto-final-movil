@@ -15,7 +15,7 @@ export class RegisterComponent  implements OnInit {
     cedula: ['', [Validators.required, Validators.minLength(11)]],
     correo: ['', [Validators.required, Validators.email]],
     telefono: ['', [Validators.required, Validators.minLength(10)]],
-    clave: ['', [Validators.required, Validators.minLength(5)]],
+    clave: ['', [Validators.required, Validators.minLength(4)]],
   });
 
   constructor(

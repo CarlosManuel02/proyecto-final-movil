@@ -137,7 +137,8 @@ export class AuthService {
 
 
   isLogged(): boolean {
-    return JSON.parse(localStorage.getItem('user') || '{}').token !== '';
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    return !!user.token;
   }
 
   resetPassword(correo: string, cedula: string) {

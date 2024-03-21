@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Camera, CameraResultType, CameraSource} from "@capacitor/camera";
+import { Geolocation } from '@capacitor/geolocation';
 import {FormBuilder} from "@angular/forms";
 import {IonModal} from "@ionic/angular";
 
@@ -8,7 +9,7 @@ import {IonModal} from "@ionic/angular";
   templateUrl: './crear-situaciones.component.html',
   styleUrls: ['./crear-situaciones.component.scss'],
 })
-export class CrearSituacionesComponent  implements OnInit {
+export class CrearSituacionesComponent implements OnInit {
 
   @ViewChild(IonModal) modal!: IonModal;
 
@@ -19,13 +20,33 @@ export class CrearSituacionesComponent  implements OnInit {
     foto: ['']
   })
   center: google.maps.LatLngLiteral | google.maps.LatLng = {lat: 0, lng: 0};
-  position!: google.maps.LatLngLiteral | google.maps.LatLng;
-
+  position!: google.maps.LatLngLiteral;
+  mapOptions: google.maps.MapOptions = {
+    center: this.center,
+    zoom: 15,
+  }
   constructor(
     public fb: FormBuilder,
-  ) { }
+  ) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.obtenerUbicacionActual();
+  }
+
+  async obtenerUbicacionActual() {
+    // Solicitar permisos para acceder a la ubicación
+    const permisos = await Geolocation.requestPermissions();
+
+    if (permisos && permisos.location === 'granted') {
+      // Obtener la ubicación actual del dispositivo
+      const posicion = await Geolocation.getCurrentPosition();
+      this.center = {lat: posicion.coords.latitude, lng: posicion.coords.longitude};
+      console.log('Ubicación actual:', posicion.coords.latitude, posicion.coords.longitude);
+    } else {
+      console.log('Permiso denegado para acceder a la ubicación.');
+    }
+  }
 
 
   async takePicture() {
@@ -56,7 +77,9 @@ export class CrearSituacionesComponent  implements OnInit {
     this.modal.dismiss();
   }
 
-  setMarker($event: google.maps.MapMouseEvent | google.maps.IconMouseEvent) {
+  setMarker($event: any) {
+    this.position = $event?.latLng?.toJSON();
+    console.log(this.position)
 
 
   }

@@ -1,9 +1,4 @@
 <ion-content>
-  <!--  id: string;-->
-  <!--  nombre: string;-->
-  <!--  apellido: string;-->
-  <!--  correo: string;-->
-  <!--  telefono: string;-->
   <ion-card>
     <ion-card-header>
       <ion-card-title>
@@ -43,7 +38,7 @@
       <ion-button slot="start"
                   expand="block"
                   color="primary"
-                  (click)="resetPassword()">Editar perfil
+                  (click)="openModal()">Editar perfil
       </ion-button>
       <ion-button slot="end"
                   expand="block"
@@ -62,3 +57,49 @@
   message="¿Estás seguro que deseas cerrar sesión?"
   [buttons]="alertButtons"
 ></ion-alert>
+
+
+<ion-modal>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="closeModal()">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>Cambiar contraseña</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-item>
+        <ion-input type="type"
+                   label="Cedula"
+                   [(ngModel)]="cedula"
+                   readonly
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text"
+                   label="Correo"
+                   [(ngModel)]="correo"
+                   readonly
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text"
+                   label="Nueva contraseña"
+                   [(ngModel)]="nuevoContrasena"
+                   readonly
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-button slot="end"
+                    expand="block"
+                    (click)="resetPassword()">Cambiar contraseña
+        </ion-button>
+      </ion-item>
+    </ion-content>
+  </ng-template>
+</ion-modal>

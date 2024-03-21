@@ -8,6 +8,7 @@ import {IonicModule} from "@ionic/angular";
 import {RegisterComponent} from "./pages/register/register.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PerfilComponent} from "./pages/perfil/perfil.component";
+import {GoogleMap, MapAdvancedMarker} from "@angular/google-maps";
 
 
 @NgModule({
@@ -22,7 +23,9 @@ import {PerfilComponent} from "./pages/perfil/perfil.component";
     AuthRoutingModule,
     IonicModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    GoogleMap,
+    MapAdvancedMarker
   ]
 })
 export class AuthModule { }

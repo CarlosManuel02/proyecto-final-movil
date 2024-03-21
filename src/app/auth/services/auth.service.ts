@@ -19,7 +19,6 @@ export interface Datos {
 }
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -139,5 +138,28 @@ export class AuthService {
 
   isLogged(): boolean {
     return JSON.parse(localStorage.getItem('user') || '{}').token !== '';
+  }
+
+  resetPassword(correo: string, cedula: string) {
+    const url = `${this.url}recuperar_clave.php`;
+    const body: FormData = new FormData();
+    body.append('correo', correo);
+    body.append('cedula', cedula);
+    return this.http.post<Login>(url, body)
+      .pipe(
+        map((resp: Login) => {
+            if (resp.exito) {
+              return resp;
+            } else {
+              throw new Error(resp.mensaje);
+            }
+          }
+        ),
+        tap((resp) => {
+          resp
+        }),
+      );
+
+    // console.log(email)
   }
 }

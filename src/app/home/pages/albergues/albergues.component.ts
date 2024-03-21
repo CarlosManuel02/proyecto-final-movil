@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { DefensaService } from "../../services/defensa.service";
 import { Albergues, Dato } from "../../../interfaces";
-import {IonModal} from "@ionic/angular";
+import {AlertController, IonModal} from "@ionic/angular";
 
 @Component({
   selector: 'app-albergues',
@@ -21,16 +21,22 @@ export class AlberguesComponent implements OnInit {
 
   constructor(
     public defensaService: DefensaService,
+    private alertController: AlertController,
   ) { }
 
   ngOnInit() {
     this.loading = true;
     this.defensaService.getAlbergues().then((data: Albergues) => {
-      this.albergues = data;
-      this.filteredAlbergues = [...this.albergues.datos];
-      this.loading = false;
+      if (data.exito){
+        this.albergues = data;
+        this.filteredAlbergues = [...this.albergues.datos];
+        this.loading = false;
+      } else {
+        this.showAlert('Error', data.mensaje);
+        this.loading = false;
+      }
     }).catch((error) => {
-      console.error(error);
+      this.showAlert('Error', 'No se pudo cargar los albergues');
       this.loading = false;
     });
   }
@@ -53,5 +59,14 @@ export class AlberguesComponent implements OnInit {
 
   closeModal() {
     this.modal.dismiss();
+  }
+
+  private showAlert(type: string, message: string) {
+    this.alertController.create({
+      header: type,
+      message,
+      buttons: ['OK']
+    }).then(alert => alert.present());
+
   }
 }

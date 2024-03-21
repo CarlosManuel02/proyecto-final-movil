@@ -14,7 +14,6 @@ import {NoticiasComponent} from "./pages/noticias/noticias.component";
 import {VideosComponent} from "./pages/videos/videos.component";
 import {MedidasComponent} from "./pages/medidas/medidas.component";
 import {SituacionesComponent} from "./pages/situaciones/situaciones.component";
-import {ReportarSituacionComponent} from "./pages/reportar-situacion/reportar-situacion.component";
 import {GoogleMap, MapAdvancedMarker, MapMarker} from "@angular/google-maps";
 import {SlickCarouselModule} from "ngx-slick-carousel";
 import {CrearSituacionesComponent} from "./components/crear-situaciones/crear-situaciones.component";
@@ -44,7 +43,6 @@ import {CrearSituacionesComponent} from "./components/crear-situaciones/crear-si
     VideosComponent,
     MedidasComponent,
     SituacionesComponent,
-    ReportarSituacionComponent,
     CrearSituacionesComponent
 
   ]

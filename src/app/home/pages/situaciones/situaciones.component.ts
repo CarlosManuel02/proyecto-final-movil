@@ -22,6 +22,7 @@ export class SituacionesComponent implements OnInit {
   constructor(
     public defensaService: DefensaService,
     public fb: FormBuilder,
+    public alertController: AlertController
   ) {
   }
 
@@ -63,8 +64,17 @@ export class SituacionesComponent implements OnInit {
           this.loading = false;
         } else {
           this.loading = false;
-          console.log(data.mensaje);
+          this.showAlert('Error', data.mensaje);
         }
       });
+  }
+
+  private showAlert(type: string, message: string) {
+    this.alertController.create({
+      header: type,
+      message,
+      buttons: ['OK']
+    }).then(alert => alert.present());
+
   }
 }

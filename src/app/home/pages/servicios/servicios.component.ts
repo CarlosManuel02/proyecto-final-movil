@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DefensaService} from "../../services/defensa.service";
 import {Servicios} from "../../../interfaces";
+import {AlertController} from "@ionic/angular";
 
 @Component({
   selector: 'app-servicios',
@@ -12,7 +13,8 @@ export class ServiciosComponent  implements OnInit {
   servicios!: Servicios;
   loading = false;
   constructor(
-    public defensaService: DefensaService
+    public defensaService: DefensaService,
+    public alertController: AlertController
   ) { }
 
   ngOnInit() {
@@ -22,13 +24,22 @@ export class ServiciosComponent  implements OnInit {
         this.servicios = data;
         this.loading = false;
       } else {
-        console.error(data.mensaje);
+        this.showAlert('Error', data.mensaje);
         this.loading = false;
       }
     }).catch((error) => {
-      console.error(error);
+      this.showAlert('Error', 'Ocurrió un error al intentar cargar los servicios');
       this.loading = false;
     });
+  }
+
+  private showAlert(type: string, message: string) {
+    this.alertController.create({
+      header: type,
+      message,
+      buttons: ['OK']
+    }).then(alert => alert.present());
+
   }
 
 }

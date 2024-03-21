@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DefensaService} from "../../services/defensa.service";
 import {Noticias} from "../../../interfaces";
+import {AlertController} from "@ionic/angular";
 
 @Component({
   selector: 'app-noticias',
@@ -13,7 +14,8 @@ export class NoticiasComponent implements OnInit {
   loading = false
 
   constructor(
-    public defenseService: DefensaService
+    public defenseService: DefensaService,
+    public alertController: AlertController
   ) {
   }
 
@@ -26,9 +28,18 @@ export class NoticiasComponent implements OnInit {
           this.noticias = data;
         } else {
           this.loading = false;
-          console.log('Error al obtener noticias');
+          this.showAlert('Error', 'No se pudo obtener las noticias');
         }
       })
+  }
+
+  private showAlert(type: string, message: string) {
+    this.alertController.create({
+      header: type,
+      message,
+      buttons: ['OK']
+    }).then(alert => alert.present());
+
   }
 
 }

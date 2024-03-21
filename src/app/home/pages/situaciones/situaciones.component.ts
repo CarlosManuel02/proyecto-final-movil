@@ -12,7 +12,7 @@ import {FormBuilder} from "@angular/forms";
 export class SituacionesComponent implements OnInit {
 
   loading = false;
-  situaciones!: Situaciones;
+  situaciones!: Situaciones | null;
   situacion!: DatoSituaciones;
   center!: google.maps.LatLngLiteral | google.maps.LatLng;
   @ViewChild('detallesSituacion') detallesModal!: IonModal;
@@ -26,17 +26,7 @@ export class SituacionesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loading = true;
-    this.defensaService.getSituaciones()
-      .then((data: Situaciones) => {
-        if (data.exito) {
-          this.situaciones = data;
-          this.loading = false;
-        } else {
-          this.loading = false;
-          console.log(data.mensaje);
-        }
-      });
+    this.getSituaciones();
   }
 
   openSituacion(situacion: DatoSituaciones) {
@@ -57,5 +47,24 @@ export class SituacionesComponent implements OnInit {
   //   TODO: Crear nueva situacion
     this.nuevaSituacionModal.present();
 
+  }
+
+  refresh() {
+    this.getSituaciones();
+  }
+
+  getSituaciones() {
+    this.loading = true;
+    this.situaciones = null;
+    this.defensaService.getSituaciones()
+      .then((data: Situaciones) => {
+        if (data.exito) {
+          this.situaciones = data;
+          this.loading = false;
+        } else {
+          this.loading = false;
+          console.log(data.mensaje);
+        }
+      });
   }
 }

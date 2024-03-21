@@ -74,7 +74,7 @@ export class AuthService {
               return resp.exito;
             } else {
               localStorage.removeItem('user');
-              throw new Error(resp.mensaje);
+              return resp.exito;
             }
           }
         ),

@@ -82,12 +82,33 @@ export class DefensaService {
     });
   }
 
-  getSituaciones() : Promise<Situaciones> {
+  getSituaciones(): Promise<Situaciones> {
     const path = this.url + 'situaciones.php';
     const body: FormData = new FormData();
     body.append('token', this.auth.token);
     return new Promise((resolve, reject) => {
       this.http.post<Situaciones>(path, body).subscribe((data) => {
+        resolve(data);
+      }, (error) => {
+        reject(error);
+      });
+    });
+
+  }
+
+  saveSituacion(titulo: string, descripcion: string, ubicacion: google.maps.LatLngLiteral, foto: string) {
+    console.log(titulo, descripcion, ubicacion, foto, this.auth.token)
+
+    const path = this.url + 'nueva_situacion.php';
+    const body: FormData = new FormData();
+    body.append('token', this.auth.token);
+    body.append('titulo', titulo);
+    body.append('descripcion', descripcion);
+    body.append('latitud', ubicacion.lat.toString());
+    body.append('longitud', ubicacion.lng.toString());
+    body.append('foto', foto);
+    return new Promise((resolve, reject) => {
+      this.http.post(path, body).subscribe((data) => {
         resolve(data);
       }, (error) => {
         reject(error);

@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {DefensaService} from "../../services/defensa.service";
 import {DatoSituaciones, Situaciones} from "../../../interfaces";
-import {IonModal} from "@ionic/angular";
+import {AlertController, IonModal} from "@ionic/angular";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-situaciones',
@@ -14,11 +15,13 @@ export class SituacionesComponent implements OnInit {
   situaciones!: Situaciones;
   situacion!: DatoSituaciones;
   center!: google.maps.LatLngLiteral | google.maps.LatLng;
-  @ViewChild(IonModal) modal!: IonModal;
+  @ViewChild('detallesSituacion') detallesModal!: IonModal;
+  @ViewChild('nuevaSituacionModal') nuevaSituacionModal!: IonModal;
 
 
   constructor(
     public defensaService: DefensaService,
+    public fb: FormBuilder,
   ) {
   }
 
@@ -37,7 +40,7 @@ export class SituacionesComponent implements OnInit {
   }
 
   openSituacion(situacion: DatoSituaciones) {
-    this.modal.present();
+    this.detallesModal.present();
     this.center = {
       lat: parseFloat(situacion.latitud),
       lng: parseFloat(situacion.longitud)
@@ -46,11 +49,13 @@ export class SituacionesComponent implements OnInit {
   }
 
   closeModal() {
-    this.modal.dismiss();
+    this.detallesModal.dismiss();
+    this.nuevaSituacionModal.dismiss();
   }
 
   openModal() {
   //   TODO: Crear nueva situacion
+    this.nuevaSituacionModal.present();
 
   }
 }

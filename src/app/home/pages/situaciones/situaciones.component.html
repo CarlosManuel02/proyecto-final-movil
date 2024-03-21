@@ -31,7 +31,7 @@
 </ion-content>
 
 
-<ion-modal>
+<ion-modal #detallesSituacion>
   <ng-template>
     <ion-header>
       <ion-toolbar>
@@ -73,6 +73,26 @@
 
       </ion-item>
 
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal #nuevaSituacionModal>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="closeModal()">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>
+          Nueva Situación
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <app-crear-situaciones></app-crear-situaciones>
     </ion-content>
   </ng-template>
 </ion-modal>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
@@ -17,18 +17,20 @@ import {SituacionesComponent} from "./pages/situaciones/situaciones.component";
 import {ReportarSituacionComponent} from "./pages/reportar-situacion/reportar-situacion.component";
 import {GoogleMap, MapAdvancedMarker, MapMarker} from "@angular/google-maps";
 import {SlickCarouselModule} from "ngx-slick-carousel";
+import {CrearSituacionesComponent} from "./components/crear-situaciones/crear-situaciones.component";
 
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     IonicModule,
     HomePageRoutingModule,
     GoogleMap,
     MapMarker,
     MapAdvancedMarker,
-    SlickCarouselModule
+    SlickCarouselModule,
+    FormsModule,
   ],
   declarations: [
     HomePage,
@@ -43,6 +45,7 @@ import {SlickCarouselModule} from "ngx-slick-carousel";
     MedidasComponent,
     SituacionesComponent,
     ReportarSituacionComponent,
+    CrearSituacionesComponent
 
   ]
 })

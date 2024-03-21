@@ -1,0 +1,56 @@
+<ion-content>
+
+  <form [formGroup]="form" (ngSubmit)="saveData()">
+    <ion-item>
+      <ion-label position="floating">Titulo</ion-label>
+      <ion-input formControlName="titulo" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descripcion</ion-label>
+      <ion-input formControlName="descripcion" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Foto</ion-label>
+      <ion-button
+        (click)="takePicture()"
+        slot="end"
+        fill="clear"
+        color="primary">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+
+    </ion-item>
+    <ion-item>
+      <ion-label>Ubicacion</ion-label>
+      <ion-button
+        (click)="openMap()"
+        slot="end"
+        fill="clear"
+        color="primary">
+        <ion-icon slot="icon-only" name="map"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-button type="submit" [disabled]="!form.valid">Enviar</ion-button>
+  </form>
+</ion-content>
+
+<ion-modal>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="closeModal()">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>Ubicacion</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+
+      <div #map id="map"></div>
+
+    </ion-content>
+  </ng-template>
+</ion-modal>

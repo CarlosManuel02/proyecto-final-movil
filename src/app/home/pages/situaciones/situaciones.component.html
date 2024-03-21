@@ -14,12 +14,8 @@
 
 <ion-content>
 
-  <ion-buttons>
-  </ion-buttons>
-
-
   <ion-list *ngIf="situaciones?.datos">
-    <ion-item *ngFor="let situacion of situaciones?.datos" (click)="openSituacion(situacion)">
+    <ion-item class="situaciones-container" *ngFor="let situacion of situaciones?.datos" (click)="openSituacion(situacion)">
       <ion-label>
         <h2>{{ situacion.titulo }}</h2>
         <p>{{ situacion.descripcion }}</p>

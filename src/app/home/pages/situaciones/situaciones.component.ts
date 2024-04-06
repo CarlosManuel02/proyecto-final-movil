@@ -17,6 +17,7 @@ export class SituacionesComponent implements OnInit {
   center!: google.maps.LatLngLiteral | google.maps.LatLng;
   @ViewChild('detallesSituacion') detallesModal!: IonModal;
   @ViewChild('nuevaSituacionModal') nuevaSituacionModal!: IonModal;
+  @ViewChild('mapModal') mapModal!: IonModal;
 
 
   constructor(
@@ -42,10 +43,11 @@ export class SituacionesComponent implements OnInit {
   closeModal() {
     this.detallesModal.dismiss();
     this.nuevaSituacionModal.dismiss();
+    this.mapModal.dismiss();
   }
 
   openModal() {
-  //   TODO: Crear nueva situacion
+    //   TODO: Crear nueva situacion
     this.nuevaSituacionModal.present();
 
   }
@@ -76,5 +78,9 @@ export class SituacionesComponent implements OnInit {
       buttons: ['OK']
     }).then(alert => alert.present());
 
+  }
+
+  openMap() {
+    this.mapModal.present();
   }
 }

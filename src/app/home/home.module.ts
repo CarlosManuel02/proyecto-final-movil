@@ -17,6 +17,7 @@ import {SituacionesComponent} from "./pages/situaciones/situaciones.component";
 import {GoogleMap, MapAdvancedMarker, MapMarker} from "@angular/google-maps";
 import {SlickCarouselModule} from "ngx-slick-carousel";
 import {CrearSituacionesComponent} from "./components/crear-situaciones/crear-situaciones.component";
+import {MapaSituacionesComponent} from "./components/mapa-situaciones/mapa-situaciones.component";
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {CrearSituacionesComponent} from "./components/crear-situaciones/crear-si
     VideosComponent,
     MedidasComponent,
     SituacionesComponent,
-    CrearSituacionesComponent
+    CrearSituacionesComponent,
+    MapaSituacionesComponent
 
   ]
 })

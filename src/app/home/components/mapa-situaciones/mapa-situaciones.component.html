@@ -1,0 +1,14 @@
+<google-map
+  style="height: 100%;"
+  [center]="center"
+  [zoom]="15"
+  [options]="options"
+
+>
+  <map-marker
+    *ngFor="let ubicacion of situacionesUbicacion"
+    [position]="ubicacion"
+    [title]="ubicacion.title"
+  >
+  </map-marker>
+</google-map>

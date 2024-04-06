@@ -35,6 +35,9 @@
       <ion-fab-button (click)="refresh()">
         <ion-icon name="refresh"></ion-icon>
       </ion-fab-button>
+      <ion-fab-button (click)="openMap()">
+        <ion-icon name="map-outline"></ion-icon>
+      </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
 </ion-content>
@@ -104,6 +107,29 @@
       <app-crear-situaciones
         (close)="closeModal()"
       ></app-crear-situaciones>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+
+<ion-modal #mapModal>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="closeModal()">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>
+          Mapa
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <app-mapa-situaciones
+        [situaciones]="situaciones?.datos"
+      ></app-mapa-situaciones>
     </ion-content>
   </ng-template>
 </ion-modal>

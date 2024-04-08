@@ -29,6 +29,7 @@ export class PerfilComponent implements OnInit {
   cedula!: string;
   correo!: string;
   nuevoContrasena!: string;
+  themeToggle: boolean = false;
 
   get usuario(): any {
     return JSON.parse(localStorage.getItem('user') || '{}');
@@ -41,6 +42,8 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.usuario)
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    this.initializeDarkTheme(prefersDark.matches);
   }
 
   logout() {
@@ -73,5 +76,16 @@ export class PerfilComponent implements OnInit {
 
   closeModal() {
     this.modal.dismiss();
+  }
+  initializeDarkTheme(isDark: boolean) {
+    this.themeToggle = isDark;
+    this.toggleDarkTheme(isDark);
+  }
+
+  toggleChange(ev: { detail: { checked: boolean | undefined; }; }) {
+    this.toggleDarkTheme(ev.detail.checked);
+  }
+  toggleDarkTheme(shouldAdd: boolean | undefined) {
+    document.body.classList.toggle('dark', shouldAdd);
   }
 }

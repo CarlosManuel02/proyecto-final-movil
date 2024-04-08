@@ -41,7 +41,11 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.usuario)
+    // console.log(this.usuario)
+    if (localStorage.getItem('dark')) {
+      this.initializeDarkTheme(JSON.parse(localStorage.getItem('dark') || 'false'));
+      return;
+    }
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
     this.initializeDarkTheme(prefersDark.matches);
   }
@@ -87,5 +91,6 @@ export class PerfilComponent implements OnInit {
   }
   toggleDarkTheme(shouldAdd: boolean | undefined) {
     document.body.classList.toggle('dark', shouldAdd);
+    localStorage.setItem('dark', JSON.stringify(shouldAdd));
   }
 }

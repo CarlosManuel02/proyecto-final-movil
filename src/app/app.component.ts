@@ -41,14 +41,13 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.isLogged = this.authService.isLogged();
-    // Use matchMedia to check the user preference
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-
-    // Initialize the dark theme based on the initial
-    // value of the prefers-color-scheme media query
+    if (localStorage.getItem('dark')) {
+      this.initializeDarkTheme(JSON.parse(localStorage.getItem('dark') || 'false'));
+      prefersDark.addEventListener('change', (mediaQuery) => this.initializeDarkTheme(mediaQuery.matches));
+      return;
+    }
     this.initializeDarkTheme(prefersDark.matches);
-
-    // Listen for changes to the prefers-color-scheme media query
     prefersDark.addEventListener('change', (mediaQuery) => this.initializeDarkTheme(mediaQuery.matches));
   }
 
@@ -65,6 +64,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   // Add or remove the "dark" class on the document body
   toggleDarkTheme(shouldAdd: boolean | undefined) {
     document.body.classList.toggle('dark', shouldAdd);
+    localStorage.setItem('dark', shouldAdd ? 'true' : 'false');
   }
 
 }

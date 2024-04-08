@@ -5,11 +5,13 @@
         <ion-list-header>
           <img src="https://defensacivil.gob.do/images/plantilla/logo_defensa_civil_ultimate.png" alt="">
         </ion-list-header>
-        <ion-item>
-          <ion-button fill="outline" slot="start" (click)="goToProfile()">Mi perfil</ion-button>
-        </ion-item>
 
         <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+          <ion-list [inset]="false" *ngIf="i === 0">
+            <ion-item>
+              <ion-button fill="outline" slot="start" (click)="goToProfile()">Mi perfil</ion-button>
+            </ion-item>
+          </ion-list>
           <ion-item routerDirection="root" [routerLink]="['/home'+ p.url]" lines="none" detail="false"
                     routerLinkActive="selected">
             <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>

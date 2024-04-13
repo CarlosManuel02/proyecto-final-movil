@@ -1,3 +1,21 @@
 h2{
   color: #0056b3
 }
+
+.situacion-estado {
+  position: absolute;
+  //font-size: 12px;
+  padding: 5px;
+  border-radius: 5px;
+  left: 80%;
+  top: 0;
+}
+
+
+.estado-pendiente {
+  color: #ffd534;
+}
+
+.estado-resuelto {
+  color: #00b300;
+}

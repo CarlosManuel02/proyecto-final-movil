@@ -50,6 +50,9 @@
   </ion-card>
 
   <ion-list [inset]="true">
+    <ion-list-header>
+      <ion-label>Configuración</ion-label>
+    </ion-list-header>
     <ion-item>
       <ion-toggle [(ngModel)]="themeToggle" (ionChange)="toggleChange($event)" justify="space-between"
       >Dark Mode

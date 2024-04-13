@@ -62,6 +62,13 @@
         <ion-select-option *ngFor="let font of fonts" [value]="font">{{ font }}</ion-select-option>
       </ion-select>
     </ion-item>
+    <ion-item>
+      <ion-label>Font Size</ion-label>
+      <ion-range min="10" max="30" step="1" snaps="true" [(ngModel)]="fontSize" (ionChange)="fontSizeChange($event)">
+        <ion-label slot="start">10</ion-label>
+        <ion-label slot="end">30</ion-label>
+      </ion-range>
+    </ion-item>
   </ion-list>
 
 </ion-content>

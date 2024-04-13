@@ -61,6 +61,13 @@ export class PerfilComponent implements OnInit {
     this.init.fontFamily = value;
   }
 
+  get fontSize() {
+    return this.init.fontSize;
+  }
+
+  set fontSize(value: number) {
+    this.init.fontSize = value;
+  }
 
   get usuario(): any {
     return JSON.parse(localStorage.getItem('user') || '{}');
@@ -115,5 +122,9 @@ export class PerfilComponent implements OnInit {
 
   fontChange($event: any) {
     this.init.fontChange($event);
+  }
+
+  fontSizeChange($event: any) {
+    this.init.fontSizeChange($event);
   }
 }

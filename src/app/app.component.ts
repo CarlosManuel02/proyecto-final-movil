@@ -1,7 +1,8 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "./auth/services/auth.service";
 import {Init} from "./shared/init";
+import {IonModal} from "@ionic/angular";
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,8 @@ import {Init} from "./shared/init";
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit, AfterViewInit {
+
+  @ViewChild(IonModal) modal!: IonModal;
 
   appPages: { title: string; url: string; icon: string }[] = [
     {title: 'Inicio', url: '', icon: 'home'},
@@ -53,6 +56,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
 
+  openSettings() {
+    this.modal.present();
+  }
 
+  dismiss() {
+    this.modal.dismiss();
+  }
 }
 

@@ -27,47 +27,10 @@ export class PerfilComponent implements OnInit {
       },
     },
   ];
-  fonts = [
-    "Roboto, sans-serif",
-    "Arial, sans-serif",
-    "Georgia, serif",
-    "Times New Roman, serif",
-    "Courier New, monospace",
-    "Verdana, sans-serif",
-    "Geneva, sans-serif",
-    "Tahoma, sans-serif",
-    "Trebuchet MS, sans-serif",
-    "Impact, sans-serif",
-    "Comic Sans MS, cursive",
 
-  ]
   cedula!: string;
   correo!: string;
   nuevoContrasena!: string;
-
-  get themeToggle() {
-    return this.init.themeToggle;
-  }
-
-  set themeToggle(value: boolean) {
-    this.init.themeToggle = value;
-  }
-
-  get fontFamily() {
-    return this.init.fontFamily;
-  }
-
-  set fontFamily(value: string) {
-    this.init.fontFamily = value;
-  }
-
-  get fontSize() {
-    return this.init.fontSize;
-  }
-
-  set fontSize(value: number) {
-    this.init.fontSize = value;
-  }
 
   get usuario(): any {
     return JSON.parse(localStorage.getItem('user') || '{}');
@@ -80,8 +43,6 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.init.getTheme();
-    this.init.getFont();
   }
 
   logout() {
@@ -116,15 +77,4 @@ export class PerfilComponent implements OnInit {
     this.modal.dismiss();
   }
 
-  toggleChange(ev: { detail: { checked: boolean | undefined; }; }) {
-    this.init.toggleDarkTheme(ev.detail.checked);
-  }
-
-  fontChange($event: any) {
-    this.init.fontChange($event);
-  }
-
-  fontSizeChange($event: any) {
-    this.init.fontSizeChange($event);
-  }
 }

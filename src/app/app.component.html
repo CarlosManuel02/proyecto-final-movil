@@ -10,6 +10,9 @@
           <ion-list [inset]="false" *ngIf="i === 0">
             <ion-item>
               <ion-button fill="outline" slot="start" (click)="goToProfile()">Mi perfil</ion-button>
+              <ion-button fill="clear" slot="end" (click)="openSettings()">
+                <ion-icon size="large" name="settings-outline"></ion-icon>
+              </ion-button>
             </ion-item>
           </ion-list>
           <ion-item routerDirection="root" [routerLink]="['/home'+ p.url]" lines="none" detail="false"
@@ -25,4 +28,25 @@
   <ion-content id="main-content">
     <ion-router-outlet></ion-router-outlet>
   </ion-content>
+
+  <ion-modal>
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="dismiss()">
+              <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-title>Ajustes</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <app-ajustes></app-ajustes>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
 </ion-app>
+
+

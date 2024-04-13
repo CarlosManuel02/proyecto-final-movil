@@ -1,0 +1,28 @@
+<ion-content>
+
+  <ion-list [inset]="true">
+    <ion-list-header>
+      <ion-label>Configuración</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-toggle [(ngModel)]="themeToggle" (ionChange)="toggleChange($event)" justify="space-between"
+      >Dark Mode
+      </ion-toggle
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label>Font Family</ion-label>
+      <ion-select [(ngModel)]="fontFamily" (ionChange)="fontChange($event)">
+        <ion-select-option *ngFor="let font of fonts" [value]="font">{{ font }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Font Size</ion-label>
+      <ion-range min="10" max="30" step="1" snaps="true" [(ngModel)]="fontSize" (ionChange)="fontSizeChange($event)">
+        <ion-label slot="start">10</ion-label>
+        <ion-label slot="end">30</ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

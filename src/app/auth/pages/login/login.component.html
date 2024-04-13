@@ -24,6 +24,8 @@
         required
       ></ion-input>
     </ion-item>
+      <a (click)="openModal()" style="text-align: right; margin-right: 10px"
+      >Olvidaste tu clave?</a>
 
     <ion-button type="submit" expand="block" [disabled]="!loginform.valid">
       Iniciar Sesion
@@ -37,4 +39,46 @@
 
 </ion-content>
 
+<ion-modal>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="closeModal()">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>Recuperar contraseña</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-item>
+        <ion-input type="type"
+                   label="Cedula"
+                   [(ngModel)]="cedula"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text"
+                   label="Correo"
+                   [(ngModel)]="correo"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text"
+                   label="Nueva contraseña"
+                   [(ngModel)]="nuevoContrasena"
+                   readonly
+        ></ion-input>
+      </ion-item>
 
+      <ion-item>
+        <ion-button slot="end"
+                    expand="block"
+                    [disabled]="!cedula || !correo"
+                    (click)="resetPassword()">Recuperar contraseña
+        </ion-button>
+      </ion-item>
+    </ion-content>
+  </ng-template>
+</ion-modal>

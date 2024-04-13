@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
-import {AlertController} from "@ionic/angular";
+import {AlertController, IonModal} from "@ionic/angular";
 
 @Component({
   selector: 'app-login',
@@ -11,10 +11,14 @@ import {AlertController} from "@ionic/angular";
 })
 export class LoginComponent implements OnInit {
 
+  @ViewChild(IonModal) modal!: IonModal;
   loginform = this.fb.group({
     cedula: ['', [Validators.required, Validators.minLength(10)]],
     clave: ['', [Validators.required, Validators.minLength(4)]]
   });
+  cedula!: string;
+  correo!: string;
+  nuevoContrasena!: string;
 
   constructor(
     public fb: FormBuilder,
@@ -51,6 +55,32 @@ export class LoginComponent implements OnInit {
       message,
       buttons: ['OK']
     }).then(alert => alert.present());
+
+  }
+  openModal() {
+    this.modal.present();
+  }
+
+  closeModal() {
+    this.modal.dismiss();
+  }
+  resetPassword() {
+    this.authService.resetPassword(this.correo, this.cedula)
+      .subscribe((resp) => {
+        if (resp.exito) {
+          // Utilizamos expresión regular para extraer la nueva contraseña del mensaje
+          const regex = /la nueva clave es (\d+)/;
+          const match = resp.mensaje.match(regex);
+          if (match) {
+            this.nuevoContrasena = match[1]; // La contraseña se encuentra en el primer grupo capturado
+          } else {
+            console.log('No se pudo extraer la nueva contraseña del mensaje');
+          }
+        } else {
+          console.log(resp.mensaje)
+        }
+      });
+
 
   }
 

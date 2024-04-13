@@ -36,6 +36,10 @@ export class PerfilComponent implements OnInit {
     "Verdana, sans-serif",
     "Geneva, sans-serif",
     "Tahoma, sans-serif",
+    "Trebuchet MS, sans-serif",
+    "Impact, sans-serif",
+    "Comic Sans MS, cursive",
+
   ]
   cedula!: string;
   correo!: string;

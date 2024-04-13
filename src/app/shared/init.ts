@@ -33,7 +33,7 @@ export class Init {
   getFont() {
     if (localStorage.getItem('font')) {
       this.fontFamily = JSON.parse(localStorage.getItem('font') || 'false');
-      document.documentElement.style.setProperty('--ion-font-family', this.fontFamily);
+      this.fontChange({detail: {value: this.fontFamily}})
       return;
     }
     this.fontFamily = 'Roboto, sans-serif';
@@ -42,7 +42,7 @@ export class Init {
 
   fontChange($event: any) {
     this.fontFamily = $event.detail.value;
-    document.documentElement.style.setProperty('--ion-dynamic-font', this.fontFamily);
+    document.documentElement.style.setProperty('--ion-font-family', this.fontFamily);
     localStorage.setItem('font', JSON.stringify(this.fontFamily));
   }
 

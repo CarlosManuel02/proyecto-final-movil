@@ -13,6 +13,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-card *ngFor="let video of videos?.datos">
     <ion-card-header>
       <ion-card-subtitle>{{video.fecha}}</ion-card-subtitle>

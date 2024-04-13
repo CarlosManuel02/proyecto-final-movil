@@ -11,6 +11,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-list *ngIf="medidas && medidas.datos.length">
     <ion-item *ngFor="let medida of medidas.datos"
               (click)="openModal(medida)">

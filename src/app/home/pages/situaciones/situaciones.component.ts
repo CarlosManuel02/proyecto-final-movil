@@ -83,4 +83,9 @@ export class SituacionesComponent implements OnInit {
   openMap() {
     this.mapModal.present();
   }
+
+  handleRefresh($event: any) {
+    this.getSituaciones();
+    $event.target.complete();
+  }
 }

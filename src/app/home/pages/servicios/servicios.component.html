@@ -14,12 +14,13 @@
 
 <ion-content [fullscreen]="false" *ngIf="!loading">
 
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
     <h1
       style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
       Servicios disponibles
     </h1>
-
-
 
   <ion-card *ngFor="let servicio of servicios?.datos">
     <img [src]="servicio.foto" alt="{{servicio.nombre}}">

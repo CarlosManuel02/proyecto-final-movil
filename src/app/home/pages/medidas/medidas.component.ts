@@ -23,18 +23,7 @@ export class MedidasComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loading = true;
-    this.defensaService.getMedidas()
-      .then((data) => {
-        if (data.exito) {
-          this.medidas = data;
-          this.loading = false;
-        } else {
-          this.showAlert('Error', data.mensaje);
-          this.loading = false;
-          console.log(data)
-        }
-      });
+    this.getMedidas();
   }
 
   openModal(medida: Datomedida) {
@@ -54,5 +43,24 @@ export class MedidasComponent implements OnInit {
       buttons: ['OK']
     }).then(alert => alert.present());
 
+  }
+
+  handleRefresh($event: any) {
+
+  }
+
+  private getMedidas() {
+    this.loading = true;
+    this.defensaService.getMedidas()
+      .then((data) => {
+        if (data.exito) {
+          this.medidas = data;
+          this.loading = false;
+        } else {
+          this.showAlert('Error', data.mensaje);
+          this.loading = false;
+          console.log(data)
+        }
+      });
   }
 }

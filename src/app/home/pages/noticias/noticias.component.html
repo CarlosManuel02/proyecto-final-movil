@@ -13,14 +13,50 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card *ngFor="let noticia of noticias?.datos">
-    <img [src]="noticia.foto" alt="{{noticia.titulo}}">
-    <ion-card-header>
-      <ion-card-subtitle>{{noticia.fecha}}</ion-card-subtitle>
-      <ion-card-title>{{noticia.titulo}}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>{{noticia.contenido}}</p>
-    </ion-card-content>
-  </ion-card>
+
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-segment value="all" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="all">
+      <ion-label>Noticias</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="exclusivas" [disabled]="!token">
+      <ion-label>Noticias Exclusivas</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <div *ngIf="segment === 'all'">
+    <ion-card *ngFor="let noticia of noticias?.datos">
+      <img [src]="noticia.foto" alt="{{noticia.titulo}}">
+      <ion-card-header>
+        <ion-card-subtitle>{{ noticia.fecha }}</ion-card-subtitle>
+        <ion-card-title>{{ noticia.titulo }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ noticia.contenido }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="segment === 'exclusivas'">
+    <ion-card *ngFor="let noticia of noticiasEspecificas?.datos">
+      <div style="position: relative;">
+        <img [src]="noticia.foto" alt="{{noticia.titulo}}">
+        <ion-icon size="large" name="star-sharp" style="position: absolute; top: 5px; left: 5px; color: gold;"></ion-icon>
+      </div>
+      <ion-card-header>
+        <ion-card-subtitle>{{ noticia.fecha }}</ion-card-subtitle>
+        <ion-card-title>{{ noticia.titulo }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ noticia.contenido }}</p>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+
 </ion-content>

@@ -19,6 +19,24 @@ export class ServiciosComponent  implements OnInit {
 
   ngOnInit() {
     this.loading = true;
+    this.getServicios();
+  }
+
+  private showAlert(type: string, message: string) {
+    this.alertController.create({
+      header: type,
+      message,
+      buttons: ['OK']
+    }).then(alert => alert.present());
+
+  }
+
+  handleRefresh($event: any) {
+    this.getServicios();
+    $event.target.complete();
+  }
+
+  private getServicios() {
     this.defensaService.getServicios().then((data) => {
       if (data.exito) {
         this.servicios = data;
@@ -32,14 +50,4 @@ export class ServiciosComponent  implements OnInit {
       this.loading = false;
     });
   }
-
-  private showAlert(type: string, message: string) {
-    this.alertController.create({
-      header: type,
-      message,
-      buttons: ['OK']
-    }).then(alert => alert.present());
-
-  }
-
 }

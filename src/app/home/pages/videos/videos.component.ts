@@ -11,12 +11,22 @@ export class VideosComponent implements OnInit {
 
   videos!: Videos;
   loading = false
+
   constructor(
     public defensaService: DefensaService,
   ) {
   }
 
   ngOnInit() {
+    this.getVideos()
+  }
+
+  handleRefresh($event: any) {
+    this.getVideos()
+    $event.target.complete();
+  }
+
+  private getVideos() {
     this.loading = true;
     this.defensaService.getVideos()
       .then((data) => {
@@ -29,5 +39,4 @@ export class VideosComponent implements OnInit {
         }
       })
   }
-
 }

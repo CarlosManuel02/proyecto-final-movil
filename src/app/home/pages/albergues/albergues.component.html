@@ -13,6 +13,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-searchbar [(ngModel)]="searchQuery" (ionChange)="filterAlbergues()"></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let albergue of filteredAlbergues" (click)="showAlbergueDetails(albergue)">

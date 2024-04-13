@@ -49,6 +49,19 @@ export class DefensaService {
     });
   }
 
+  getNoticiasEspecificas(token: string): Promise<Noticias> {
+    const path = this.url + 'noticias_especificas.php';
+    const body: FormData = new FormData();
+    body.append('token', token);
+    return new Promise((resolve, reject) => {
+      this.http.post<Noticias>(path, body).subscribe((data) => {
+        resolve(data);
+      }, (error) => {
+        reject(error);
+      });
+    });
+  }
+
   getAlbergues(): Promise<Albergues> {
     const path = this.url + 'albergues.php';
     return new Promise((resolve, reject) => {

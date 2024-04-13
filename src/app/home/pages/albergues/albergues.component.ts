@@ -25,20 +25,7 @@ export class AlberguesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loading = true;
-    this.defensaService.getAlbergues().then((data: Albergues) => {
-      if (data.exito){
-        this.albergues = data;
-        this.filteredAlbergues = [...this.albergues.datos];
-        this.loading = false;
-      } else {
-        this.showAlert('Error', data.mensaje);
-        this.loading = false;
-      }
-    }).catch((error) => {
-      this.showAlert('Error', 'No se pudo cargar los albergues');
-      this.loading = false;
-    });
+    this.getAlbergues();
   }
 
   filterAlbergues() {
@@ -68,5 +55,27 @@ export class AlberguesComponent implements OnInit {
       buttons: ['OK']
     }).then(alert => alert.present());
 
+  }
+
+  handleRefresh($event: any) {
+    this.getAlbergues();
+    $event.target.complete();
+  }
+
+  private getAlbergues() {
+    this.loading = true;
+    this.defensaService.getAlbergues().then((data: Albergues) => {
+      if (data.exito){
+        this.albergues = data;
+        this.filteredAlbergues = [...this.albergues.datos];
+        this.loading = false;
+      } else {
+        this.showAlert('Error', data.mensaje);
+        this.loading = false;
+      }
+    }).catch((error) => {
+      this.showAlert('Error', 'No se pudo cargar los albergues');
+      this.loading = false;
+    });
   }
 }

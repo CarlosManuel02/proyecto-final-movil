@@ -52,8 +52,15 @@
   <ion-list [inset]="true">
     <ion-item>
       <ion-toggle [(ngModel)]="themeToggle" (ionChange)="toggleChange($event)" justify="space-between"
-      >Dark Mode</ion-toggle
+      >Dark Mode
+      </ion-toggle
       >
+    </ion-item>
+    <ion-item>
+      <ion-label>Font Family</ion-label>
+      <ion-select [(ngModel)]="fontFamily" (ionChange)="fontChange($event)">
+        <ion-select-option *ngFor="let font of fonts" [value]="font">{{ font }}</ion-select-option>
+      </ion-select>
     </ion-item>
   </ion-list>
 

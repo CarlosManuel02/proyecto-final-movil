@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {AuthService, Login} from "../../services/auth.service";
 import {AlertController, IonModal} from "@ionic/angular";
+import {Init} from "../../../shared/init";
 
 @Component({
   selector: 'app-perfil',
@@ -26,10 +27,36 @@ export class PerfilComponent implements OnInit {
       },
     },
   ];
+  fonts = [
+    "Roboto, sans-serif",
+    "Arial, sans-serif",
+    "Georgia, serif",
+    "Times New Roman, serif",
+    "Courier New, monospace",
+    "Verdana, sans-serif",
+    "Geneva, sans-serif",
+    "Tahoma, sans-serif",
+  ]
   cedula!: string;
   correo!: string;
   nuevoContrasena!: string;
-  themeToggle: boolean = false;
+
+  get themeToggle() {
+    return this.init.themeToggle;
+  }
+
+  set themeToggle(value: boolean) {
+    this.init.themeToggle = value;
+  }
+
+  get fontFamily() {
+    return this.init.fontFamily;
+  }
+
+  set fontFamily(value: string) {
+    this.init.fontFamily = value;
+  }
+
 
   get usuario(): any {
     return JSON.parse(localStorage.getItem('user') || '{}');
@@ -37,17 +64,13 @@ export class PerfilComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
+    private init: Init,
   ) {
   }
 
   ngOnInit(): void {
-    // console.log(this.usuario)
-    if (localStorage.getItem('dark')) {
-      this.initializeDarkTheme(JSON.parse(localStorage.getItem('dark') || 'false'));
-      return;
-    }
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    this.initializeDarkTheme(prefersDark.matches);
+    this.init.getTheme();
+    this.init.getFont();
   }
 
   logout() {
@@ -81,16 +104,12 @@ export class PerfilComponent implements OnInit {
   closeModal() {
     this.modal.dismiss();
   }
-  initializeDarkTheme(isDark: boolean) {
-    this.themeToggle = isDark;
-    this.toggleDarkTheme(isDark);
-  }
 
   toggleChange(ev: { detail: { checked: boolean | undefined; }; }) {
-    this.toggleDarkTheme(ev.detail.checked);
+    this.init.toggleDarkTheme(ev.detail.checked);
   }
-  toggleDarkTheme(shouldAdd: boolean | undefined) {
-    document.body.classList.toggle('dark', shouldAdd);
-    localStorage.setItem('dark', JSON.stringify(shouldAdd));
+
+  fontChange($event: any) {
+    this.init.fontChange($event);
   }
 }

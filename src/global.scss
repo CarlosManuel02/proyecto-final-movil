@@ -31,6 +31,11 @@ ion-toolbar {
   --color: #fff;
 }
 
+html {
+  --ion-dynamic-font: var(--ion-default-dynamic-font);
+  //--ion-font-family: 'Comic Sans MS';
+}
+
 /*
  * Optional CSS
  * -----------------------------------

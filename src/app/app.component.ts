@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "./auth/services/auth.service";
+import {Init} from "./shared/init";
 
 @Component({
   selector: 'app-root',
@@ -26,12 +27,14 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor(
     public router: Router,
-    public authService: AuthService
+    public authService: AuthService,
+    private init: Init
   ) {
   }
 
   ngAfterViewInit(): void {
     this.isLogged = this.authService.isLogged();
+    this.init.getTheme();
   }
 
 
@@ -41,31 +44,15 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.isLogged = this.authService.isLogged();
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    if (localStorage.getItem('dark')) {
-      this.initializeDarkTheme(JSON.parse(localStorage.getItem('dark') || 'false'));
-      prefersDark.addEventListener('change', (mediaQuery) => this.initializeDarkTheme(mediaQuery.matches));
-      return;
-    }
-    this.initializeDarkTheme(prefersDark.matches);
-    prefersDark.addEventListener('change', (mediaQuery) => this.initializeDarkTheme(mediaQuery.matches));
+    this.init.getTheme();
+    this.init.getFont();
   }
 
   goToProfile() {
     this.router.navigate(['../auth/perfil']);
   }
 
-  initializeDarkTheme(isDark: boolean) {
-    this.themeToggle = isDark;
-    this.toggleDarkTheme(isDark);
-  }
 
-
-  // Add or remove the "dark" class on the document body
-  toggleDarkTheme(shouldAdd: boolean | undefined) {
-    document.body.classList.toggle('dark', shouldAdd);
-    localStorage.setItem('dark', shouldAdd ? 'true' : 'false');
-  }
 
 }
 

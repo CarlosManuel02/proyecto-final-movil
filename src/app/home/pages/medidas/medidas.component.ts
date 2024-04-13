@@ -46,7 +46,8 @@ export class MedidasComponent implements OnInit {
   }
 
   handleRefresh($event: any) {
-
+    this.getMedidas();
+    $event.target.complete();
   }
 
   private getMedidas() {
